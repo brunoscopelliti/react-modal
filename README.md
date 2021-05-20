@@ -1,22 +1,22 @@
-# template-react-component
+# react-modal
 
-[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/brunoscopelliti/template-react-component/blob/main/LICENSE)
-[![npm version](https://img.shields.io/npm/v/@bscop/template-react-component.svg?style=flat)](https://www.npmjs.com/package/@bscop/template-react-component)
-[![CircleCI Status](https://circleci.com/gh/brunoscopelliti/template-react-component.svg?style=shield&circle-token=:circle-token)](https://circleci.com/gh/brunoscopelliti/template-react-component)
-[![Coverage](https://img.shields.io/codecov/c/github/brunoscopelliti/template-react-component)](https://app.codecov.io/gh/brunoscopelliti/template-react-component/)
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/brunoscopelliti/react-modal/blob/main/LICENSE)
+[![npm version](https://img.shields.io/npm/v/@bscop/react-modal.svg?style=flat)](https://www.npmjs.com/package/@bscop/react-modal)
+[![CircleCI Status](https://circleci.com/gh/brunoscopelliti/react-modal.svg?style=shield&circle-token=:circle-token)](https://circleci.com/gh/brunoscopelliti/react-modal)
+[![Coverage](https://img.shields.io/codecov/c/github/brunoscopelliti/react-modal)](https://app.codecov.io/gh/brunoscopelliti/react-modal/)
 
-A template to create a new React component.
+Accessible modal (in React).
 
 ## Install
 
 ```
-npm i @bscop/template-react-component
+npm i @bscop/react-modal
 ```
 
 ## Usage
 
 ```js
-import Component from "@bscop/template-react-component";
+import Component from "@bscop/react-modal";
 
 function App () {
   return (
