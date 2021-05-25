@@ -9,17 +9,33 @@ import useKeydown from "@bscop/use-keydown";
 import useId from "@bscop/use-id";
 
 /**
- * It memorizes the element active at mount time,
- * and set it active again at unmount time.
- * @name useRestoreFocus
+ * @name useMaybeRef
  */
-const useRestoreFocus =
-  () => {
+const useMaybeRef = (refOrUndefined) => {
+  const ref = useRef();
+
+  return refOrUndefined || ref;
+};
+
+/**
+ * It memorizes the element active at mount time,
+ * and set focus on the modal element.
+ * Once the modal gets unmounted it set focus on
+ * the element that was initially active.
+ * @name useFocusModal
+ * @param {React.RefObject<HTMLDivElement>} refModal
+ */
+const useFocusModal =
+  (refModal) => {
     const ref = useRef(null);
 
     useDidMount(
       () => {
         ref.current = document.activeElement;
+
+        if (refModal.current) {
+          refModal.current.focus();
+        }
 
         return () => {
           if (ref.current && document.body.contains(ref.current)) {
@@ -30,12 +46,56 @@ const useRestoreFocus =
     );
   };
 
+/**
+ * Prevent the focus to leave the modal element.
+ * @name useFocusTrap
+ * @param {React.RefObject<HTMLDivElement>} refModal
+ */
+const useFocusTrap =
+  (refModal) => {
+    const onKeyDown =
+      (event) => {
+        if (event.code === "Tab") {
+          const focusableElements = refModal.current.querySelectorAll(
+            "a[href]:not([disabled]), button:not([disabled]), textarea:not([disabled]), input[type='text']:not([disabled]), input[type='radio']:not([disabled]), input[type='checkbox']:not([disabled]), select:not([disabled])"
+          );
+
+          const firstFocusableElement = focusableElements[0];
+          const lastFocusableElement = focusableElements[focusableElements.length - 1];
+
+          if (event.shiftKey) {
+            if (document.activeElement === firstFocusableElement) {
+              // @ts-ignore
+              lastFocusableElement.focus();
+              event.preventDefault();
+            }
+          } else {
+            if (document.activeElement === lastFocusableElement) {
+              // @ts-ignore
+              firstFocusableElement.focus();
+              event.preventDefault();
+            }
+          }
+        }
+      };
+
+    useDidMount(
+      () => {
+        document.addEventListener("keydown", onKeyDown);
+
+        return () => {
+          document.removeEventListener("keydown", onKeyDown);
+        };
+      }
+    );
+  };
+
 const Modal = React.forwardRef(
   /**
    * @param {import("./index").ModalProps} props
-   * @param {React.Ref<HTMLDivElement>} ref
+   * @param {React.ForwardedRef<HTMLDivElement>} maybeRef
    */
-  (props, ref) => {
+  (props, maybeRef) => {
     const {
       backdrop = true,
       className,
@@ -45,12 +105,11 @@ const Modal = React.forwardRef(
       title,
     } = props;
 
-    useRestoreFocus();
+    const refModal = useMaybeRef(maybeRef);
 
-    /**
-     * TODO
-     * Trap focus within the modal.
-     */
+    useFocusModal(refModal);
+
+    useFocusTrap(refModal);
 
     useKeydown(onClose, { keys: "Escape" });
 
@@ -64,7 +123,7 @@ const Modal = React.forwardRef(
     return ReactDOM.createPortal(
       <>
         <div
-          ref={ref}
+          ref={refModal}
           className={cssClass("ui-modal", className)}
           aria-labelledby={titleId}
           aria-modal="true"
@@ -88,8 +147,8 @@ const Modal = React.forwardRef(
                 {renderContent()}
               </div>
               <div className="ui-modal-footer">
-                <button type="button" className="btn btn-secondary">Close</button>
-                <button type="button" className="btn btn-primary">Save changes</button>
+                {/* <button type="button" className="btn btn-secondary">Close</button>
+                <button type="button" className="btn btn-primary">Save changes</button> */}
               </div>
             </div>
           </div>
