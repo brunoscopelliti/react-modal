@@ -1,25 +1,36 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-/**
- * @name Message
- * @component
- * @example
- * const label = "Hello, world!";
- * return (
- *   <Message label={label} />
- * );
- */
-function Message (props) {
-  return (
-    <div className="label">
-      {props.label}
-    </div>
-  );
-}
+import useBool from "@bscop/use-bool";
 
-Message.propTypes = {
-  label: PropTypes.string.isRequired,
+import Modal from "./modal";
+
+const ControlledModal =
+  (props) => {
+    const { renderHook, ...modalProps } = props;
+
+    const [isOpen, open, close] = useBool();
+
+    return (
+      <>
+        {
+          renderHook({ onClick: open })
+        }
+        {
+          isOpen &&
+            <Modal {...modalProps} onClose={close} />
+        }
+      </>
+    );
+  };
+
+ControlledModal.propTypes = {
+  className: PropTypes.string,
+  renderHook: PropTypes.func.isRequired,
+  rootId: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
 };
 
-export default Message;
+export default ControlledModal;
+
+export { Modal };

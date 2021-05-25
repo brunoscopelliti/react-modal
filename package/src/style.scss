@@ -1,3 +1,44 @@
-.label {
-  font-size: 1rem;
+$zModal: 99999;
+$zModalBackdrop: $zModal - 1;
+
+.ui-modal {
+  position: fixed;
+  z-index: $zModal;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+
+  overflow-x: hidden;
+  overflow-y: auto;
+  outline: none;
+}
+
+.ui-modal-backdrop {
+  position: fixed;
+  z-index: $zModalBackdrop;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+
+  background: rgba(0, 0, 0, .2);
+}
+
+.ui-modal-dialog {
+  max-width: 500px;
+  margin: 1.75rem auto;
+  pointer-events: none;
+}
+
+.ui-modal-content {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  pointer-events: auto;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid rgba(0, 0, 0, .2);
+  border-radius: 4px;
+  color: #000;
 }

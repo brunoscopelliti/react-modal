@@ -1,11 +1,27 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
-import Message from "./";
+import ControlledModal from "./";
 
-describe("Message", () => {
-  it("renders a label", () => {
-    render(<Message label="Hello, world!" />);
+describe("ControlledModal", () => {
+  it("renders the modal hook", () => {
+    render(
+      <ControlledModal
+        renderHook={
+          (props) => {
+            return (
+              <button type="button" {...props}>
+                Show modal
+              </button>
+            );
+          }
+        }
+        rootId="modal-root"
+        title="A modal"
+      />
+    );
 
-    expect(screen.getByText("Hello, world!")).toBeInTheDocument();
+    expect(screen.getByText("Show modal")).toBeInTheDocument();
+
+    expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
   });
 });
