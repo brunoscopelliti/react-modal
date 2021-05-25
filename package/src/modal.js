@@ -25,7 +25,7 @@ const useRestoreFocus =
           if (ref.current && document.body.contains(ref.current)) {
             ref.current.focus();
           }
-        }
+        };
       }
     );
   };
@@ -40,6 +40,7 @@ const Modal = React.forwardRef(
       backdrop = true,
       className,
       onClose,
+      renderContent,
       rootId,
       title,
     } = props;
@@ -54,11 +55,6 @@ const Modal = React.forwardRef(
     useKeydown(onClose, { keys: "Escape" });
 
     const titleId = useId({ length: 3, prefix: "modal-title" });
-
-    /**
-     * TODO
-     * Render custom body
-     */
 
     /**
      * TODO
@@ -89,7 +85,7 @@ const Modal = React.forwardRef(
                 </button>
               </div>
               <div className="ui-modal-body">
-                <p>Woohoo, you're reading this text in a modal!</p>
+                {renderContent()}
               </div>
               <div className="ui-modal-footer">
                 <button type="button" className="btn btn-secondary">Close</button>
@@ -103,8 +99,7 @@ const Modal = React.forwardRef(
             <div className="ui-modal-backdrop" />
           )
         }
-      </>
-      ,
+      </>,
       document.getElementById(rootId)
     );
   }
@@ -113,8 +108,10 @@ const Modal = React.forwardRef(
 Modal.displayName = "Modal";
 
 Modal.propTypes = {
+  backdrop: PropTypes.bool,
   className: PropTypes.string,
   onClose: PropTypes.func.isRequired,
+  renderContent: PropTypes.func.isRequired,
   rootId: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
 };

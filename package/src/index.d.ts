@@ -12,6 +12,7 @@ export type ModalProps = {
    * or press enter key.
    */
   onClose : () => void;
+  renderContent : () => React.ReactNode;
   /**
    * Id of the DOM element containing the modal.
    */

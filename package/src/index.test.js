@@ -6,6 +6,13 @@ describe("ControlledModal", () => {
   it("renders the modal hook", () => {
     render(
       <ControlledModal
+        renderContent={
+          () => {
+            return (
+              <p>This is the content of the modal.</p>
+            );
+          }
+        }
         renderHook={
           (props) => {
             return (

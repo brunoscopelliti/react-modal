@@ -30,8 +30,19 @@ const Template = (args) => {
 
 export const AlwaysVisibleModal = Template.bind({});
 AlwaysVisibleModal.args = {
-  // eslint-disable-next-line react/display-name
-  renderHook: (props) => {
+  renderContent () {
+    return (
+      <div>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam euismod, tortor nec
+          pharetra ultricies, ante erat imperdiet velit, nec laoreet enim lacus a velit. <a href="#">
+          Nam luctus</a>, enim in interdum condimentum, nisl diam iaculis lorem, vel volutpat
+          mi leo sit amet lectus.
+        </p>
+      </div>
+    );
+  },
+  renderHook (props) {
     return (
       <button type="button" {...props}>Show modal</button>
     );

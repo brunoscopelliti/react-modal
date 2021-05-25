@@ -19,8 +19,15 @@ const Template = (args) => {
 
 export const SimpleModal = Template.bind({});
 SimpleModal.args = {
-  // eslint-disable-next-line react/display-name
-  renderHook: (props) => {
+  renderContent () {
+    return (
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam euismod, tortor nec
+        pharetra ultricies, ante erat imperdiet velit, nec laoreet enim lacus a velit.
+      </p>
+    );
+  },
+  renderHook (props) {
     return (
       <button type="button" {...props}>Show modal</button>
     );
@@ -32,8 +39,15 @@ SimpleModal.args = {
 export const NoBackdropModal = Template.bind({});
 NoBackdropModal.args = {
   backdrop: false,
-  // eslint-disable-next-line react/display-name
-  renderHook: (props) => {
+  renderContent () {
+    return (
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam euismod, tortor nec
+        pharetra ultricies, ante erat imperdiet velit, nec laoreet enim lacus a velit.
+      </p>
+    );
+  },
+  renderHook (props) {
     return (
       <button type="button" {...props}>Show modal</button>
     );
