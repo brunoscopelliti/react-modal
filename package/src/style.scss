@@ -1,6 +1,12 @@
 $zModal: 99999;
 $zModalBackdrop: $zModal - 1;
 
+$interalBorderColor: #dee2e6;
+
+body.ui-modal-open {
+  overflow: hidden;
+}
+
 .ui-modal {
   position: fixed;
   z-index: $zModal;
@@ -41,4 +47,88 @@ $zModalBackdrop: $zModal - 1;
   border: 1px solid rgba(0, 0, 0, .2);
   border-radius: 4px;
   color: #000;
+}
+
+.ui-modal-header,
+.ui-modal-body,
+.ui-modal-footer {
+  padding: 1rem;
+}
+
+.ui-modal-header,
+.ui-modal-footer {
+  display: flex;
+}
+
+.ui-modal-header {
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid $interalBorderColor;
+}
+
+.ui-modal-title {
+  font-size: 1rem;
+  margin: 0;
+}
+
+.ui-modal-close {
+  background: none;
+  border: 0;
+  cursor: pointer;
+  font-size: 24px;
+}
+
+.ui-modal-body {
+  position: relative;
+  flex: 1 1 auto;
+}
+
+.ui-modal-footer {
+  justify-content: flex-end;
+  border-top: 1px solid $interalBorderColor;
+}
+
+/**
+ * Scrollable
+ */
+
+.ui-modal-dialog.ui-scrollable {
+  height: calc(100% - 3.5rem);
+
+  .ui-modal-content {
+    max-height: 100%;
+    overflow: hidden;
+  }
+
+  .ui-modal-body {
+    overflow-y: auto;
+  }
+}
+
+/**
+ * Centered vertically
+ */
+
+.ui-modal-dialog.ui-centered {
+  display: flex;
+  align-items: center;
+
+  min-height: calc(100% - 3.5rem);
+}
+
+/**
+ * Fullscreen
+ */
+
+.ui-modal-dialog.ui-fullscreen {
+  width: 100vw;
+  height: 100%;
+  margin: 0;
+  max-width: none;
+
+  .ui-modal-content {
+    height: 100%;
+    border: 0;
+    border-radius: 0;
+  }
 }

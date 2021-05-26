@@ -18,7 +18,7 @@ const ControlledModal =
         }
         {
           isOpen &&
-            <Modal {...modalProps} onClose={close} />
+            <Modal {...modalProps} close={close} />
         }
       </>
     );

@@ -1,5 +1,9 @@
 import React from "react";
 
+type RenderProps = {
+  close : () => void;
+};
+
 export type ModalProps = {
   /**
    * Determines whether the backdrop should
@@ -8,15 +12,31 @@ export type ModalProps = {
   backdrop ?: boolean;
   className ?: string;
   /**
-   * Executed when user clicks on cross icon,
-   * or press enter key.
+   * Determine whether the modal
+   * is vertically centered.
    */
-  onClose : () => void;
-  renderContent : () => React.ReactNode;
+  centered ?: boolean;
+  /**
+   * Executed when user closes the modal,
+   * eg.clicks on cross icon, or press escape key.
+   */
+  close ?: () => void;
+  /**
+   * Determine whether the modal
+   * should occupy all available space.
+   */
+  fullscreen ?: boolean;
+  renderContent : (props : RenderProps) => React.ReactNode;
+  renderFooter ?: (props : RenderProps) => React.ReactNode;
   /**
    * Id of the DOM element containing the modal.
    */
   rootId : string;
+  /**
+   * Determine whether the modal content
+   * is allowed to be scrollable.
+   */
+  scrollable ?: boolean;
   /**
    * The title render in the header of the modal.
    */
@@ -31,7 +51,7 @@ type HookProps = {
   onClick : (event : React.MouseEvent) => void;
 }
 
-export type ControlledModalProps = Omit<ModalProps, "onClose"> & {
+export type ControlledModalProps = Omit<ModalProps, "close"> & {
   renderHook : (hookProps: HookProps) => React.ReactNode
 };
 

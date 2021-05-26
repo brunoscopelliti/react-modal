@@ -33,6 +33,7 @@ const useFocusModal =
       () => {
         ref.current = document.activeElement;
 
+        /* istanbul ignore else */
         if (refModal.current) {
           refModal.current.focus();
         }
@@ -53,6 +54,10 @@ const useFocusModal =
  */
 const useFocusTrap =
   (refModal) => {
+    /**
+     * It is not possible to test this with jsdom.
+     */
+    /* istanbul ignore next */
     const onKeyDown =
       (event) => {
         if (event.code === "Tab") {
@@ -98,12 +103,25 @@ const Modal = React.forwardRef(
   (props, maybeRef) => {
     const {
       backdrop = true,
+      centered,
       className,
-      onClose,
+      close,
+      fullscreen,
       renderContent,
+      renderFooter,
       rootId,
+      scrollable,
       title,
     } = props;
+
+    useDidMount(
+      () => {
+        document.body.classList.add("ui-modal-open");
+        return () => {
+          document.body.classList.remove("ui-modal-open");
+        };
+      }
+    );
 
     const refModal = useMaybeRef(maybeRef);
 
@@ -111,14 +129,11 @@ const Modal = React.forwardRef(
 
     useFocusTrap(refModal);
 
-    useKeydown(onClose, { keys: "Escape" });
+    const canBeClosed = typeof close == "function";
 
-    const titleId = useId({ length: 3, prefix: "modal-title" });
+    useKeydown(close, { active: canBeClosed, keys: "Escape" });
 
-    /**
-     * TODO
-     * Render custom footer
-     */
+    const titleId = useId({ length: 4, prefix: "modal-title" });
 
     return ReactDOM.createPortal(
       <>
@@ -130,26 +145,39 @@ const Modal = React.forwardRef(
           role="dialog"
           tabIndex={-1}
         >
-          <div className="ui-modal-dialog">
+          <div className={
+            cssClass("ui-modal-dialog", {
+              "ui-centered": centered,
+              "ui-fullscreen": fullscreen,
+              "ui-scrollable": scrollable,
+            })
+          }>
             <div className="ui-modal-content">
               <div className="ui-modal-header">
                 <h5 className="ui-modal-title" id={titleId}>{title}</h5>
-                <button
-                  type="button"
-                  className="ui-modal-close"
-                  aria-label="Close"
-                  onClick={onClose}
-                >
-                  ×
-                </button>
+                {
+                  canBeClosed && (
+                    <button
+                      type="button"
+                      className="ui-modal-close"
+                      aria-label="Close"
+                      onClick={close}
+                    >
+                      ×
+                    </button>
+                  )
+                }
               </div>
               <div className="ui-modal-body">
-                {renderContent()}
+                {renderContent({ close })}
               </div>
-              <div className="ui-modal-footer">
-                {/* <button type="button" className="btn btn-secondary">Close</button>
-                <button type="button" className="btn btn-primary">Save changes</button> */}
-              </div>
+              {
+                typeof renderFooter == "function" && (
+                  <div className="ui-modal-footer">
+                    {renderFooter({ close })}
+                  </div>
+                )
+              }
             </div>
           </div>
         </div>
@@ -168,10 +196,14 @@ Modal.displayName = "Modal";
 
 Modal.propTypes = {
   backdrop: PropTypes.bool,
+  centered: PropTypes.bool,
   className: PropTypes.string,
-  onClose: PropTypes.func.isRequired,
+  close: PropTypes.func,
+  fullscreen: PropTypes.bool,
   renderContent: PropTypes.func.isRequired,
+  renderFooter: PropTypes.func,
   rootId: PropTypes.string.isRequired,
+  scrollable: PropTypes.bool,
   title: PropTypes.string.isRequired,
 };
 
