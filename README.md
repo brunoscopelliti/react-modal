@@ -7,6 +7,8 @@
 
 Accessible modal (in React).
 
+[View in Storybook.](https://brunoscopelliti.github.io/react-modal)
+
 ## Install
 
 ```
@@ -16,11 +18,30 @@ npm i @bscop/react-modal
 ## Usage
 
 ```js
-import Component from "@bscop/react-modal";
+import Modal from "@bscop/react-modal";
 
 function App () {
   return (
-    <Component />
+    <Modal 
+      renderContent={
+        () => {
+          return (
+            <div>
+              <p>This is the content of the modal ...</p>
+            </div>
+          );
+        }
+      }
+      renderHook={
+        (props) => {
+          return (
+            <button type="button" {...props}>Show modal</button>
+          );
+        }
+      }
+      rootId="modal-root"
+      title="About"
+    />
   );
 }
 ```
