@@ -5,7 +5,7 @@ export default {
   input: "package/src/index.js",
   output: [
     {
-      exports: "default",
+      exports: "named",
       file: "package/dist/index.js",
       format: "cjs",
       sourcemap: true,
