@@ -100,6 +100,7 @@
     "@bscop/css-class": "^1.0.0",
     "@bscop/use-bool": "^1.0.1",
     "@bscop/use-did-mount": "^2.0.6",
+    "@bscop/use-forward-ref": "^1.0.0",
     "@bscop/use-id": "^2.0.0",
     "@bscop/use-keydown": "^1.0.3"
   }
