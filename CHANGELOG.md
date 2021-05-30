@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.1](https://github.com/brunoscopelliti/react-modal/compare/v1.0.0...v1.0.1) (2021-05-30)
+
+
+### Bug Fixes
+
+* rollup config ([9ed01d1](https://github.com/brunoscopelliti/react-modal/commits/9ed01d1961764c005d7ac2bc23b1f05cdd13503b))
+
 ## 1.0.0 (2021-05-26)
 
 
