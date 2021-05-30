@@ -5,17 +5,9 @@ import PropTypes from "prop-types";
 import cssClass from "@bscop/css-class";
 
 import useDidMount from "@bscop/use-did-mount";
+import useForwardRef from "@bscop/use-forward-ref";
 import useKeydown from "@bscop/use-keydown";
 import useId from "@bscop/use-id";
-
-/**
- * @name useMaybeRef
- */
-const useMaybeRef = (refOrUndefined) => {
-  const ref = useRef();
-
-  return refOrUndefined || ref;
-};
 
 /**
  * It memorizes the element active at mount time,
@@ -98,7 +90,7 @@ const useFocusTrap =
 const Modal = React.forwardRef(
   /**
    * @param {import("./index").ModalProps} props
-   * @param {React.ForwardedRef<HTMLDivElement>} maybeRef
+   * @param {React.RefObject<HTMLDivElement>} maybeRef
    */
   (props, maybeRef) => {
     const {
@@ -123,7 +115,7 @@ const Modal = React.forwardRef(
       }
     );
 
-    const refModal = useMaybeRef(maybeRef);
+    const refModal = useForwardRef(maybeRef);
 
     useFocusModal(refModal);
 
