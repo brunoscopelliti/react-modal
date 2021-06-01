@@ -87,10 +87,10 @@ const useFocusTrap =
     );
   };
 
-const Modal = React.forwardRef(
+const ControlledModal = React.forwardRef(
   /**
-   * @param {import("./index").ModalProps} props
-   * @param {React.RefObject<HTMLDivElement>} maybeRef
+   * @param {import("./index").ControlledModalProps} props
+   * @param {React.ForwardedRef<HTMLDivElement>} maybeRef
    */
   (props, maybeRef) => {
     const {
@@ -184,9 +184,9 @@ const Modal = React.forwardRef(
   }
 );
 
-Modal.displayName = "Modal";
+ControlledModal.displayName = "Modal";
 
-Modal.propTypes = {
+ControlledModal.propTypes = {
   backdrop: PropTypes.bool,
   centered: PropTypes.bool,
   className: PropTypes.string,
@@ -199,4 +199,4 @@ Modal.propTypes = {
   title: PropTypes.string.isRequired,
 };
 
-export default Modal;
+export default ControlledModal;

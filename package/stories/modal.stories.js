@@ -1,12 +1,12 @@
 import React, { useEffect, useRef } from "react";
 
-import { Modal } from "../src";
+import { ControlledModal } from "../src";
 
 import Page from "./fixtures/page";
 
 export default {
-  title: "Modal",
-  component: Modal,
+  title: "ControlledModal",
+  component: ControlledModal,
 };
 
 const Template = (args) => {
@@ -23,7 +23,7 @@ const Template = (args) => {
 
   return (
     <Page>
-      <Modal {...args} ref={ref} />
+      <ControlledModal {...args} ref={ref} />
     </Page>
   );
 };

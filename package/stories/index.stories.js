@@ -1,20 +1,20 @@
 import React from "react";
 
-import ControlledModal from "../src";
+import Modal from "../src";
 
 import Page from "./fixtures/page";
 import Form from "./fixtures/form";
 import Paragraphs from "./fixtures/paragraphs";
 
 export default {
-  title: "ControlledModal",
-  component: ControlledModal,
+  title: "Modal",
+  component: Modal,
 };
 
 const Template = (args) => {
   return (
     <Page>
-      <ControlledModal {...args} />
+      <Modal {...args} />
     </Page>
   );
 };

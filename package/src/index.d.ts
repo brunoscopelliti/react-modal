@@ -4,7 +4,7 @@ type RenderProps = {
   close : () => void;
 };
 
-export type ModalProps = {
+export type ControlledModalProps = {
   /**
    * Determines whether the backdrop should
    * be rendered, or not.
@@ -43,18 +43,18 @@ export type ModalProps = {
   title : string;
 }
 
-declare const Modal: React.FC<ModalProps>;
+declare const ControlledModal: React.ForwardRefExoticComponent<ControlledModalProps & React.RefAttributes<HTMLDivElement>>;
 
-export { Modal };
+export { ControlledModal };
 
 type HookProps = {
   onClick : (event : React.MouseEvent) => void;
 }
 
-export type ControlledModalProps = Omit<ModalProps, "close"> & {
+export type ModalProps = Omit<ControlledModalProps, "close"> & {
   renderHook : (hookProps: HookProps) => React.ReactNode
 };
 
-declare const ControlledModal: React.FC<ControlledModalProps>;
+declare const Modal: React.FC<ModalProps>;
 
-export default ControlledModal;
+export default Modal;

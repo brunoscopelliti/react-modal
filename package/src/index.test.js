@@ -2,9 +2,9 @@ import React from "react";
 import { fireEvent, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
-import ControlledModal from "./";
+import Modal from "./";
 
-describe("ControlledModal", () => {
+describe("Modal", () => {
   beforeEach(
     () => {
       const root = document.createElement("div");
@@ -25,7 +25,7 @@ describe("ControlledModal", () => {
 
   it("renders the modal hook", () => {
     render(
-      <ControlledModal
+      <Modal
         renderContent={
           () => {
             return (
@@ -54,7 +54,7 @@ describe("ControlledModal", () => {
 
   it("permits to open the modal", () => {
     render(
-      <ControlledModal
+      <Modal
         renderContent={
           () => {
             return (
@@ -95,7 +95,7 @@ describe("ControlledModal", () => {
 
   it("closes the modal when ESC is pressed", () => {
     render(
-      <ControlledModal
+      <Modal
         renderContent={
           () => {
             return (
@@ -132,7 +132,7 @@ describe("ControlledModal", () => {
 
   it("closes the modal when close button is clicked", () => {
     render(
-      <ControlledModal
+      <Modal
         renderContent={
           () => {
             return (
@@ -169,7 +169,7 @@ describe("ControlledModal", () => {
 
   it("closes the modal when footer cancel button is clicked", () => {
     render(
-      <ControlledModal
+      <Modal
         renderContent={
           () => {
             return (
@@ -213,7 +213,7 @@ describe("ControlledModal", () => {
 
   it("sets focus on modal when is opened", () => {
     render(
-      <ControlledModal
+      <Modal
         renderContent={
           () => {
             return (

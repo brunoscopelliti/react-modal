@@ -3,9 +3,9 @@ import PropTypes from "prop-types";
 
 import useBool from "@bscop/use-bool";
 
-import Modal from "./modal";
+import ControlledModal from "./modal";
 
-const ControlledModal =
+const Modal =
   (props) => {
     const { renderHook, ...modalProps } = props;
 
@@ -18,19 +18,19 @@ const ControlledModal =
         }
         {
           isOpen &&
-            <Modal {...modalProps} close={close} />
+            <ControlledModal {...modalProps} close={close} />
         }
       </>
     );
   };
 
-ControlledModal.propTypes = {
+Modal.propTypes = {
   className: PropTypes.string,
   renderHook: PropTypes.func.isRequired,
   rootId: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
 };
 
-export default ControlledModal;
+export default Modal;
 
-export { Modal };
+export { ControlledModal };
