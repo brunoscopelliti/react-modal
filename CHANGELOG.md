@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0](https://github.com/brunoscopelliti/react-modal/compare/v1.0.2...v2.0.0) (2021-06-01)
+
+
+### ⚠ BREAKING CHANGES
+
+* switch Modal and ControlledModal behavior.
+
+### Bug Fixes
+
+* typings ([3030f45](https://github.com/brunoscopelliti/react-modal/commits/3030f45d9d564f98230a631acdc5235aaa48bbdf))
+
 ### [1.0.2](https://github.com/brunoscopelliti/react-modal/compare/v1.0.1...v1.0.2) (2021-05-31)
 
 ### [1.0.1](https://github.com/brunoscopelliti/react-modal/compare/v1.0.0...v1.0.1) (2021-05-30)
