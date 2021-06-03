@@ -47,7 +47,10 @@ describe("Modal", () => {
       />
     );
 
-    expect(screen.getByText("Show modal")).toBeInTheDocument();
+    const button = screen.getByText("Show modal");
+
+    expect(button).toBeInTheDocument();
+    expect(button).toHaveAttribute("aria-haspopup", "dialog");
 
     expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
   });

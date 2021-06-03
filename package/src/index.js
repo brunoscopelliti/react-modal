@@ -14,7 +14,7 @@ const Modal =
     return (
       <>
         {
-          renderHook({ onClick: open })
+          renderHook({ "aria-haspopup": "dialog", onClick: open })
         }
         {
           isOpen &&
