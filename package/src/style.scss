@@ -28,7 +28,7 @@ body.ui-modal-open {
   height: 100vh;
   width: 100vw;
 
-  background: rgba(0, 0, 0, .2);
+  background: var(--modal-backdrop-bg-color);
 }
 
 .ui-modal-dialog {
@@ -42,11 +42,11 @@ body.ui-modal-open {
   flex-direction: column;
   width: 100%;
   pointer-events: auto;
-  background-color: #fff;
+  background-color: var(--main-bg-color);
   background-clip: padding-box;
-  border: 1px solid rgba(0, 0, 0, .2);
-  border-radius: 4px;
-  color: #000;
+  border: 1px solid var(--modal-border-color);
+  border-radius: 2px;
+  color: var(--main-color);
 }
 
 .ui-modal-header,
@@ -63,7 +63,7 @@ body.ui-modal-open {
 .ui-modal-header {
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid $interalBorderColor;
+  border-bottom: 1px solid var(--modal-internal-border-color, $interalBorderColor);
 }
 
 .ui-modal-title {
@@ -85,7 +85,7 @@ body.ui-modal-open {
 
 .ui-modal-footer {
   justify-content: flex-end;
-  border-top: 1px solid $interalBorderColor;
+  border-top: 1px solid var(--modal-internal-border-color, $interalBorderColor);
 }
 
 /**

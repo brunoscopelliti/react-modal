@@ -1,3 +1,12 @@
+:root {
+  --main-color: black;
+  --main-bg-color: white;
+
+  --modal-backdrop-bg-color: rgba(0, 0, 0, .2);
+  --modal-border-color: rgba(0, 0, 0, .2);
+  --modal-internal-border-color: #dee2e6;
+}
+
 body {
   margin: 0;
   font-family: "Nunito", sans-serif;
