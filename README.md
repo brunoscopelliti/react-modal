@@ -7,7 +7,7 @@
 
 Accessible modal (in React).
 
-[View in Storybook.](https://brunoscopelliti.github.io/react-modal)
+[View in Storybook](https://brunoscopelliti.github.io/react-modal).
 
 ## Install
 
